@@ -12,11 +12,11 @@ class $modify(MyPlayLayer, PlayLayer) {
     // 1. Detectamos cuando el icono muere
     void destroyPlayer(PlayerObject* player, GameObject* obstacle) {
         PlayLayer::destroyPlayer(player, obstacle);
-        
+
         isPlayerDeadAndFrozen = true;
         deadTapCount = 0;
         showingHitboxes = false;
-        
+
         // Congela la pantalla en el frame exacto de la muerte
         this->pauseSchedulerAndActions();
     }
@@ -29,8 +29,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 
                 // Primer doble toque: Muestra hitboxes
                 if (deadTapCount == 2 && !showingHitboxes) {
-                    this->m_debugDraw = true;
-                    
+                    this->m_fields->m_drawDebug = true;
                     showingHitboxes = true;
                     deadTapCount = 0; // Reinicia contador para los próximos toques
                     return;
@@ -39,8 +38,7 @@ class $modify(MyPlayLayer, PlayLayer) {
                 // Segundo doble toque: Descongela y reinicia el nivel
                 if (deadTapCount == 2 && showingHitboxes) {
                     isPlayerDeadAndFrozen = false;
-                    this->m_debugDraw = false;
-                    
+                    this->m_fields->m_drawDebug = false;
                     this->resumeSchedulerAndActions(); // Descongela
                     this->resetLevel(); // Revive/Reinicia
                     return;
