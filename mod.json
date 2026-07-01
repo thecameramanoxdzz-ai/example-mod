@@ -1,11 +1,4 @@
-{
-  "geode": "3.0.0",
-  "id": "thecameraman.deathfreeze",
-  "version": "1.0.0",
-  "name": "Death Freeze",
-  "developer": "thecameraman",
-  "description": "Freeze screen on death",
-  "dependencies": [],
-  "platforms": ["android"],
-  "gd": "2.206"
-}
+  "gd": {
+    "win": "2.2074",
+    "android": "2.2074"
+  },
