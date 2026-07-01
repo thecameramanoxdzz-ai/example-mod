@@ -3,55 +3,38 @@
 
 using namespace geode::prelude;
 
-// Variables globales para controlar el estado del juego
-bool isPlayerDeadAndFrozen = false;
-int deadTapCount = 0;
-bool showingHitboxes = false;
+static bool isPlayerDeadAndFrozen = false;
+static int deadTapCount = 0;
+static bool showingHitboxes = false;
 
-class $modify(MyPlayLayer, PlayLayer) {
-    // Estructura obligatoria para las macros internas de Geode
-    struct Fields {
-        bool m_dummy = false;
-    };
-
-    // 1. Detectamos cuando el icono muere
-    void destroyPlayer(PlayerObject* player, GameObject* obstacle) {
-        PlayLayer::destroyPlayer(player, obstacle);
-
+class $modify(PlayLayer) {
+    void destroyPlayer(PlayerObject* p0, GameObject* p1) {
+        PlayLayer::destroyPlayer(p0, p1);
         isPlayerDeadAndFrozen = true;
         deadTapCount = 0;
         showingHitboxes = false;
-
-        // Congela la pantalla en el frame exacto de la muerte
         this->pauseSchedulerAndActions();
     }
 
-    // 2. Detectamos los toques en la pantalla estando congelado
-    void pushButton(PlayerButton btn, bool isPlayer2) {
+    void pushButton(PlayerButton p0, bool p1) {
         if (isPlayerDeadAndFrozen) {
-            if (btn == PlayerButton::Jump) { 
+            if (p0 == PlayerButton::Jump) {
                 deadTapCount++;
-
-                // Primer doble toque: Muestra hitboxes
                 if (deadTapCount == 2 && !showingHitboxes) {
                     showingHitboxes = true;
-                    this->setDebugDraw(true); // Activa hitboxes de forma oficial
-                    deadTapCount = 0; 
+                    deadTapCount = 0;
                     return;
                 }
-
-                // Segundo doble toque: Descongela y reinicia el nivel
                 if (deadTapCount == 2 && showingHitboxes) {
                     isPlayerDeadAndFrozen = false;
                     showingHitboxes = false;
-                    this->setDebugDraw(false); // Desactiva hitboxes
-                    this->resumeSchedulerAndActions(); // Descongela
-                    this->resetLevel(); // Revive/Reinicia
+                    this->resumeSchedulerAndActions();
+                    this->resetLevel();
                     return;
                 }
             }
-            return; // Bloquea el toque para que el icono muerto no intente saltar
+            return;
         }
-        PlayLayer::pushButton(btn, isPlayer2);
+        PlayLayer::pushButton(p0, p1);
     }
 };
