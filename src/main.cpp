@@ -9,7 +9,7 @@ int deadTapCount = 0;
 bool showingHitboxes = false;
 
 class $modify(MyPlayLayer, PlayLayer) {
-    // Estructura obligatoria para que Geode no falle con macros de m_fields
+    // Estructura obligatoria para las macros internas de Geode
     struct Fields {
         bool m_dummy = false;
     };
@@ -26,16 +26,7 @@ class $modify(MyPlayLayer, PlayLayer) {
         this->pauseSchedulerAndActions();
     }
 
-    // 2. Forzamos el dibujado de hitboxes si la variable está activa
-    void draw() {
-        if (showingHitboxes) {
-            // Activa temporalmente las hitboxes nativas durante el renderizado
-            this->m_debugDraw = true;
-        }
-        PlayLayer::draw();
-    }
-
-    // 3. Detectamos los toques en la pantalla estando congelado
+    // 2. Detectamos los toques en la pantalla estando congelado
     void pushButton(PlayerButton btn, bool isPlayer2) {
         if (isPlayerDeadAndFrozen) {
             if (btn == PlayerButton::Jump) { 
@@ -44,6 +35,7 @@ class $modify(MyPlayLayer, PlayLayer) {
                 // Primer doble toque: Muestra hitboxes
                 if (deadTapCount == 2 && !showingHitboxes) {
                     showingHitboxes = true;
+                    this->setDebugDraw(true); // Activa hitboxes de forma oficial
                     deadTapCount = 0; 
                     return;
                 }
@@ -52,9 +44,9 @@ class $modify(MyPlayLayer, PlayLayer) {
                 if (deadTapCount == 2 && showingHitboxes) {
                     isPlayerDeadAndFrozen = false;
                     showingHitboxes = false;
-                    this->m_debugDraw = false;
-                    this->resumeSchedulerAndActions(); 
-                    this->resetLevel(); 
+                    this->setDebugDraw(false); // Desactiva hitboxes
+                    this->resumeSchedulerAndActions(); // Descongela
+                    this->resetLevel(); // Revive/Reinicia
                     return;
                 }
             }
