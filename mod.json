@@ -1,12 +1,8 @@
 {
-  "geode": "3.7.4",
-  "id": "joakoo_46.el-frozen screen",
-  "version": "1.0.0",
-  "name": "Nombre de tu Mod",
-  "developer": "TuNombre",
-  "description": "Una descripción corta de tu mod.",
-  "gd": {
-    "win": "2.2074",
-    "android": "2.2074"
-  }
+    "geode": "5.7.1",
+    "id": "joakoo_46.el-frozen-screen",
+    "version": "1.0.0",
+    "name": "El Frozen Screen",
+    "developer": "joakoo_46",
+    "description": "congelar pantalla al morir"
 }
