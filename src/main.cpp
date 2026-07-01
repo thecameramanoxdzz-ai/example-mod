@@ -29,7 +29,8 @@ class $modify(MyPlayLayer, PlayLayer) {
 
                 // Primer doble toque: Muestra hitboxes
                 if (deadTapCount == 2 && !showingHitboxes) {
-                    this->m_isDrawDebug = true; 
+                    this->m_debugDraw = true;
+                    
                     showingHitboxes = true;
                     deadTapCount = 0; // Reinicia contador para los próximos toques
                     return;
@@ -38,7 +39,8 @@ class $modify(MyPlayLayer, PlayLayer) {
                 // Segundo doble toque: Descongela y reinicia el nivel
                 if (deadTapCount == 2 && showingHitboxes) {
                     isPlayerDeadAndFrozen = false;
-                    this->m_isDrawDebug = false;
+                    this->m_debugDraw = false;
+                    
                     this->resumeSchedulerAndActions(); // Descongela
                     this->resetLevel(); // Revive/Reinicia
                     return;
