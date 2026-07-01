@@ -6,6 +6,6 @@
   "developer": "thecameraman",
   "description": "Freeze screen on death",
   "dependencies": [],
-  "platforms": ["win", "android"],
+  "platforms": ["android"],
   "gd": "2.206"
 }
