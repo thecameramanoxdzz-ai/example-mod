@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "name": "Freeze Frame Death",
   "developer": "TuNombre",
-  "description": "Congela la pantalla al morir. 2 toques muestran hitboxes, 2 más reinician.",
+  "description": "Congela la pantalla al morir. 2 toques muestran hitboxes, 2 más reinician",
   "dependencies": [],
   "platforms": ["win", "android"]
 }
