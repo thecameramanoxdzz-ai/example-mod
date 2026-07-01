@@ -4,5 +4,9 @@
     "version": "1.0.0",
     "name": "El Frozen Screen",
     "developer": "joakoo_46",
-    "description": "congelar pantalla al morir"
+    "description": "congelar pantalla al morir",
+    "gd": {
+        "android": "2.2074",
+        "win": "2.2074"
+    }
 }
