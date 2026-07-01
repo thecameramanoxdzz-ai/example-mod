@@ -1,5 +1,5 @@
 {
-    "geode": "5.7.1",
+    "geode": ">=5.7.1",
     "id": "joakoo_46.el-frozen-screen",
     "version": "5.7.1",
     "name": "El Frozen Screen",
