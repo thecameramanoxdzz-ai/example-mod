@@ -1,7 +1,7 @@
 {
   "geode": "3.0.0",
   "id": "tu-nombre.freeze_frame_death",
-  "version": "1.0.0",
+  "version": "2.206",
   "name": "Freeze Frame Death",
   "developer": "TuNombre",
   "description": "Congela la pantalla al morir. 2 toques muestran hitboxes, 2 más reinician",
