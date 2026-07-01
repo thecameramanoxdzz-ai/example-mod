@@ -1,35 +1,4 @@
 name: Build Geode Mod
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
-jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - name: Android32
-            target: Android32
-          - name: Android64
-            target: Android64
-          - name: Windows
-            target: Windows
-
-    name: ${{ matrix.config.name }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Build Mod
-        uses: geode-sdk/build-geode-mod@main
-        with:
-          sdk: nightly       
-          name: Build Geode Mod
 on:
   push:
     branches:
